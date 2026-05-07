@@ -889,25 +889,14 @@
     }
 
       const url = SCRIPT_URL + '?data=' + encodeURIComponent(JSON.stringify(data));
-      // 5 секундын дараа автоматаар амжилттай гэж үзнэ
-      const timer = setTimeout(() => {
-        loading.style.display = 'none';
-        success.style.display = 'block';
-        btn.disabled = false;
-      }, 5000);
       
-      fetch(url, { method: 'GET', mode: 'no-cors' })
-      .then(() => {
-        clearTimeout(timer);
-        loading.style.display = 'none';
-        success.style.display = 'block';
-        btn.disabled = false;
-      }).catch(() => {
-        clearTimeout(timer);
-        loading.style.display = 'none';
-        success.style.display = 'block';
-        btn.disabled = false;
-      });
+      // Шууд амжилттай харуулна — Apps Script арын дэвшилд ажиллана
+      loading.style.display = 'none';
+      success.style.display = 'block';
+      btn.disabled = false;
+      
+      // Apps Script руу илгээх
+      fetch(url, { method: 'GET', mode: 'no-cors' }).catch(() => {});
     };
     
     if (imgInput && imgInput.files[0]) {
