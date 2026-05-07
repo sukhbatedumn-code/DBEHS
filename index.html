@@ -844,7 +844,7 @@
 
   // ⚠️ Google Sheets холбоосоо энд оруулна уу
   // Таны Google Apps Script Web App URL-ийг доор тавина
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx1XhQKzuAQLi6gm6wVtymIF4NiaELNA_87mKISxew3YLvbFcAJgvAUrgul6CsDu6EjFA/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyMSi4yhHY2gvbKJTEt6YpIxda1OQCN20O7QqxPcF_3pRgYFG9FSxwF7YVx0Hdx5ERtZg/exec';
 
   function submitForm(btn, sheetName) {
     const card = btn.closest('.form-card');
@@ -888,11 +888,12 @@
       return;
     }
 
+      const formData = new FormData();
+      formData.append('data', JSON.stringify(data));
       fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
       }).then(() => {
         loading.style.display = 'none';
         success.style.display = 'block';
