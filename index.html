@@ -254,9 +254,15 @@
     .home-grid { grid-template-columns: repeat(2, 1fr); }
     .main { padding: 16px; }
   }
+
+  
+  
+  .logout-btn:hover { background: rgba(255,255,255,0.1); color: white; }
+
 </style>
 </head>
 <body>
+
 
 <!-- HEADER -->
 <div class="header">
@@ -838,7 +844,7 @@
 
   // ⚠️ Google Sheets холбоосоо энд оруулна уу
   // Таны Google Apps Script Web App URL-ийг доор тавина
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyg4jr8JE4Rh3Sze0lWOnW_ANiYYM10fmFZDP0Gq9-z09U7yScY8zZAk-EKlYC07uzI-g/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx1XhQKzuAQLi6gm6wVtymIF4NiaELNA_87mKISxew3YLvbFcAJgvAUrgul6CsDu6EjFA/exec';
 
   function submitForm(btn, sheetName) {
     const card = btn.closest('.form-card');
@@ -909,6 +915,9 @@
       processAndSend(null, null);
     }
   }
+
+  
+
 </script>
 </body>
 </html>
