@@ -216,24 +216,7 @@
   .loading { display: none; text-align: center; padding: 16px; color: var(--text-sub); font-size: 13px; }
 
 
-  /* IMAGE UPLOAD */
-  .img-upload-area {
-    border: 2px dashed var(--border);
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: border-color 0.15s;
-    position: relative;
-  }
-  .img-upload-area:hover { border-color: var(--navy-light); }
-  .img-upload-area input[type=file] { 
-    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
-  }
-  .img-upload-area .icon { font-size: 28px; margin-bottom: 6px; }
-  .img-upload-area p { font-size: 13px; color: var(--text-sub); }
-  .img-preview { display: none; margin-top: 10px; }
-  .img-preview img { max-width: 100%; max-height: 200px; border-radius: 8px; border: 1px solid var(--border); }
+  
 
   /* DASHBOARD */
   .dashboard { padding: 20px 0; }
@@ -399,22 +382,6 @@
       <div class="form-row full">
         <div class="field"><label>Нэмэлт тэмдэглэл</label><textarea placeholder="Нэмэлт мэдээлэл..." style="min-height:60px"></textarea></div>
       </div>
-      
-      <hr class="form-divider">
-      <div class="section-label">Зураг хавсаргах (заавал биш)</div>
-      <div class="form-row full">
-        <div class="field">
-          <div class="img-upload-area" onclick="this.querySelector('input').click()">
-            <input type="file" accept="image/*" onchange="previewImage(this)">
-            <div class="icon">📷</div>
-            <p>Зураг сонгох эсвэл чирж оруулах</p>
-          </div>
-          <div class="img-preview" id="preview-1">
-            <img src="" alt="preview">
-            <p style="font-size:11px;color:var(--text-sub);margin-top:4px">✓ Зураг сонгогдлоо</p>
-          </div>
-        </div>
-      </div>
 <div class="submit-row">
         <button class="btn-secondary" onclick="resetForm(this)">Цэвэрлэх</button>
         <button class="btn-primary" onclick="submitForm(this, 'uurg')">✓ Илгээх</button>
@@ -453,22 +420,6 @@
       <div class="form-row">
         <div class="field"><label>Яаралтай эсэх</label><select><option>Яаралтай биш</option><option>Яаралтай (3 хоногт)</option><option>Маш яаралтай (өнөөдөр)</option></select></div>
         <div class="field"><label>Нэмэлт тэмдэглэл</label><input type="text" placeholder="Бусад мэдээлэл"></div>
-      </div>
-      
-      <hr class="form-divider">
-      <div class="section-label">Зураг хавсаргах (заавал биш)</div>
-      <div class="form-row full">
-        <div class="field">
-          <div class="img-upload-area" onclick="this.querySelector('input').click()">
-            <input type="file" accept="image/*" onchange="previewImage(this)">
-            <div class="icon">📷</div>
-            <p>Зураг сонгох эсвэл чирж оруулах</p>
-          </div>
-          <div class="img-preview" id="preview-2">
-            <img src="" alt="preview">
-            <p style="font-size:11px;color:var(--text-sub);margin-top:4px">✓ Зураг сонгогдлоо</p>
-          </div>
-        </div>
       </div>
 <div class="submit-row">
         <button class="btn-secondary" onclick="resetForm(this)">Цэвэрлэх</button>
@@ -513,22 +464,6 @@
       <div class="form-row full">
         <div class="field"><label>Тайлбар / Дүгнэлт</label><textarea placeholder="Шалгалтын дэлгэрэнгүй тайлбар..."></textarea></div>
       </div>
-      
-      <hr class="form-divider">
-      <div class="section-label">Зураг хавсаргах (заавал биш)</div>
-      <div class="form-row full">
-        <div class="field">
-          <div class="img-upload-area" onclick="this.querySelector('input').click()">
-            <input type="file" accept="image/*" onchange="previewImage(this)">
-            <div class="icon">📷</div>
-            <p>Зураг сонгох эсвэл чирж оруулах</p>
-          </div>
-          <div class="img-preview" id="preview-3">
-            <img src="" alt="preview">
-            <p style="font-size:11px;color:var(--text-sub);margin-top:4px">✓ Зураг сонгогдлоо</p>
-          </div>
-        </div>
-      </div>
 <div class="submit-row">
         <button class="btn-secondary" onclick="resetForm(this)">Цэвэрлэх</button>
         <button class="btn-primary" onclick="submitForm(this, 'uzleg')">✓ Илгээх</button>
@@ -563,22 +498,6 @@
       </div>
       <div class="form-row full">
         <div class="field"><label>Тэмдэглэл</label><textarea placeholder="Нэмэлт мэдээлэл..." style="min-height:70px"></textarea></div>
-      </div>
-      
-      <hr class="form-divider">
-      <div class="section-label">Зураг хавсаргах (заавал биш)</div>
-      <div class="form-row full">
-        <div class="field">
-          <div class="img-upload-area" onclick="this.querySelector('input').click()">
-            <input type="file" accept="image/*" onchange="previewImage(this)">
-            <div class="icon">📷</div>
-            <p>Зураг сонгох эсвэл чирж оруулах</p>
-          </div>
-          <div class="img-preview" id="preview-4">
-            <img src="" alt="preview">
-            <p style="font-size:11px;color:var(--text-sub);margin-top:4px">✓ Зураг сонгогдлоо</p>
-          </div>
-        </div>
       </div>
 <div class="submit-row">
         <button class="btn-secondary" onclick="resetForm(this)">Цэвэрлэх</button>
@@ -616,22 +535,6 @@
       </div>
       <div class="form-row full">
         <div class="field"><label>Маргааш хийх ажил</label><textarea placeholder="Маргааш хийх төлөвлөгөө..." style="min-height:60px"></textarea></div>
-      </div>
-      
-      <hr class="form-divider">
-      <div class="section-label">Зураг хавсаргах (заавал биш)</div>
-      <div class="form-row full">
-        <div class="field">
-          <div class="img-upload-area" onclick="this.querySelector('input').click()">
-            <input type="file" accept="image/*" onchange="previewImage(this)">
-            <div class="icon">📷</div>
-            <p>Зураг сонгох эсвэл чирж оруулах</p>
-          </div>
-          <div class="img-preview" id="preview-5">
-            <img src="" alt="preview">
-            <p style="font-size:11px;color:var(--text-sub);margin-top:4px">✓ Зураг сонгогдлоо</p>
-          </div>
-        </div>
       </div>
 <div class="submit-row">
         <button class="btn-secondary" onclick="resetForm(this)">Цэвэрлэх</button>
@@ -679,22 +582,6 @@
       <div class="form-row full">
         <div class="field"><label>Тэмдэглэл</label><textarea placeholder="Нэмэлт мэдээлэл..." style="min-height:60px"></textarea></div>
       </div>
-      
-      <hr class="form-divider">
-      <div class="section-label">Зураг хавсаргах (заавал биш)</div>
-      <div class="form-row full">
-        <div class="field">
-          <div class="img-upload-area" onclick="this.querySelector('input').click()">
-            <input type="file" accept="image/*" onchange="previewImage(this)">
-            <div class="icon">📷</div>
-            <p>Зураг сонгох эсвэл чирж оруулах</p>
-          </div>
-          <div class="img-preview" id="preview-6">
-            <img src="" alt="preview">
-            <p style="font-size:11px;color:var(--text-sub);margin-top:4px">✓ Зураг сонгогдлоо</p>
-          </div>
-        </div>
-      </div>
 <div class="submit-row">
         <button class="btn-secondary" onclick="resetForm(this)">Цэвэрлэх</button>
         <button class="btn-primary" onclick="submitForm(this, 'tooluur')">✓ Илгээх</button>
@@ -729,22 +616,6 @@
       </div>
       <div class="form-row full">
         <div class="field"><label>Тэмдэглэл</label><textarea placeholder="Нэмэлт мэдээлэл..." style="min-height:60px"></textarea></div>
-      </div>
-      
-      <hr class="form-divider">
-      <div class="section-label">Зураг хавсаргах (заавал биш)</div>
-      <div class="form-row full">
-        <div class="field">
-          <div class="img-upload-area" onclick="this.querySelector('input').click()">
-            <input type="file" accept="image/*" onchange="previewImage(this)">
-            <div class="icon">📷</div>
-            <p>Зураг сонгох эсвэл чирж оруулах</p>
-          </div>
-          <div class="img-preview" id="preview-7">
-            <img src="" alt="preview">
-            <p style="font-size:11px;color:var(--text-sub);margin-top:4px">✓ Зураг сонгогдлоо</p>
-          </div>
-        </div>
       </div>
 <div class="submit-row">
         <button class="btn-secondary" onclick="resetForm(this)">Цэвэрлэх</button>
@@ -789,22 +660,6 @@
       <div class="form-row full">
         <div class="field"><label>Тэмдэглэл</label><textarea placeholder="Нэмэлт мэдээлэл..." style="min-height:60px"></textarea></div>
       </div>
-      
-      <hr class="form-divider">
-      <div class="section-label">Зураг хавсаргах (заавал биш)</div>
-      <div class="form-row full">
-        <div class="field">
-          <div class="img-upload-area" onclick="this.querySelector('input').click()">
-            <input type="file" accept="image/*" onchange="previewImage(this)">
-            <div class="icon">📷</div>
-            <p>Зураг сонгох эсвэл чирж оруулах</p>
-          </div>
-          <div class="img-preview" id="preview-8">
-            <img src="" alt="preview">
-            <p style="font-size:11px;color:var(--text-sub);margin-top:4px">✓ Зураг сонгогдлоо</p>
-          </div>
-        </div>
-      </div>
 <div class="submit-row">
         <button class="btn-secondary" onclick="resetForm(this)">Цэвэрлэх</button>
         <button class="btn-primary" onclick="submitForm(this, 'helheeh')">✓ Илгээх</button>
@@ -844,7 +699,7 @@
 
   // ⚠️ Google Sheets холбоосоо энд оруулна уу
   // Таны Google Apps Script Web App URL-ийг доор тавина
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzBbVPEopqzBAk1gH7J9IbrP8yZkwD0JdmjKlEw57VP4apaO0x0FHRipuFFIgucectLdA/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxpqcPBZ_PQPqLZ-pcnwdWZAYPcWOwGK0ja9FhbnW_gOEDYZIB0MCjxjvElTrg5Fcxcgw/exec';
 
   function submitForm(btn, sheetName) {
     const card = btn.closest('.form-card');
@@ -854,64 +709,23 @@
       const label = el.closest('.field')?.querySelector('label')?.textContent?.replace(' *','') || ('field_' + i);
       data[label] = el.value;
     });
+
+    const loading = card.querySelector('.loading');
+    const success = card.querySelector('.success-box');
+    loading.style.display = 'block';
+    btn.disabled = true;
+
+    const url = SCRIPT_URL + '?data=' + encodeURIComponent(JSON.stringify(data));
     
-    // Image handling
-    const imgInput = card.querySelector('input[type=file]');
-    const processAndSend = (imageData, imageName) => {
-      if (imageData) { data.image = imageData; data.imageName = imageName; }
-
-      const loading = card.querySelector('.loading');
-      const success = card.querySelector('.success-box');
-      loading.style.display = 'block';
-      btn.disabled = true;
-      
-      // Track in dashboard
-      const workerInput = card.querySelector('input[type=text]');
-      dashData.push({
-        date: new Date().toISOString().split('T')[0],
-        sheet: sheetName,
-        worker: workerInput ? workerInput.value : '-',
-        note: data['Тэмдэглэл'] || data['Даалгаврын тайлбар'] || '-'
-      });
-      localStorage.setItem('dbehs_dash', JSON.stringify(dashData));
-      updateDashboard();
-
-    // Google Sheets рүү илгээх
-      if (SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE' || !SCRIPT_URL.includes('script.google')) {
-      // Demo горим — бодит холбоос байхгүй үед
-      setTimeout(() => {
-        loading.style.display = 'none';
-        success.style.display = 'block';
-        btn.disabled = false;
-        console.log('Demo mode - Data:', data);
-      }, 1200);
-      return;
-    }
-
-      const url = SCRIPT_URL + '?data=' + encodeURIComponent(JSON.stringify(data));
-      
-      // Шууд амжилттай харуулна — Apps Script арын дэвшилд ажиллана
+    // Шууд амжилттай харуулна
+    setTimeout(() => {
       loading.style.display = 'none';
       success.style.display = 'block';
       btn.disabled = false;
-      
-      // Apps Script руу илгээх
-      fetch(url, { method: 'GET', mode: 'no-cors' }).catch(() => {});
-    };
-    
-    if (imgInput && imgInput.files[0]) {
-      const reader = new FileReader();
-      reader.onload = e => {
-        const base64 = e.target.result.split(',')[1];
-        processAndSend(base64, imgInput.files[0].name);
-      };
-      reader.readAsDataURL(imgInput.files[0]);
-    } else {
-      processAndSend(null, null);
-    }
-  }
+    }, 1000);
 
-  
+    fetch(url, { method: 'GET', mode: 'no-cors' }).catch(() => {});
+  }
 
 </script>
 </body>
