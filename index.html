@@ -146,6 +146,25 @@
     .home-grid { grid-template-columns: repeat(2, 1fr); }
     .main { padding: 16px; }
   }
+
+  /* DASHBOARD */
+  .dash-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .dash-stat { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; }
+  .dash-stat .num { font-size: 28px; font-weight: 600; color: var(--navy); }
+  .dash-stat .num-today { font-size: 14px; color: var(--green); font-weight: 500; margin-top: 2px; }
+  .dash-stat .lbl { font-size: 12px; color: var(--text-sub); margin-top: 4px; }
+  .dash-bars { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .dash-bars h3 { font-size: 13px; font-weight: 500; color: var(--text-sub); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .bar-lbl { font-size: 13px; color: var(--text); width: 130px; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 8px; background: var(--bg); border-radius: 4px; }
+  .bar-fill { height: 100%; border-radius: 4px; background: var(--navy); transition: width 0.6s ease; }
+  .bar-val { font-size: 13px; color: var(--text); width: 30px; text-align: right; }
+  .dash-loading { text-align: center; padding: 40px; color: var(--text-sub); font-size: 14px; }
+  .dash-error { text-align: center; padding: 40px; color: #e24b4a; font-size: 14px; }
+  .refresh-btn { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 7px 14px; font-size: 13px; color: var(--text-sub); cursor: pointer; transition: all 0.15s; font-family: Arial, sans-serif; }
+  .refresh-btn:hover { border-color: var(--navy); color: var(--navy); }
+
 </style>
 </head>
 <body>
@@ -163,6 +182,7 @@
 
 <div class="nav">
   <button class="nav-btn active" onclick="showPage('home', this)">🏠 Нүүр</button>
+  <button class="nav-btn" onclick="showPage('dashboard', this); loadDashboard()">📊 Дашбоард</button>
   <button class="nav-btn" onclick="showPage('uurg', this)">📋 Үүрэг даалгавар</button>
   <button class="nav-btn" onclick="showPage('material', this)">📦 Материал хүсэх</button>
   <button class="nav-btn" onclick="showPage('uzleg', this)">🔍 Үзлэг шалгалт</button>
@@ -174,6 +194,18 @@
 </div>
 
 <div class="main">
+
+
+  <!-- DASHBOARD -->
+  <div id="page-dashboard" class="page">
+    <div class="page-header" style="justify-content: space-between;">
+      <div class="page-title">📊 Удирдлагын дашбоард</div>
+      <button class="refresh-btn" onclick="loadDashboard()">🔄 Шинэчлэх</button>
+    </div>
+    <div id="dashContent">
+      <div class="dash-loading">⏳ Мэдээлэл ачааллаж байна...</div>
+    </div>
+  </div>
 
   <!-- HOME -->
   <div id="page-home" class="page active">
@@ -536,7 +568,7 @@
 </div>
 
 <script>
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz2cc2SGxT7f17wKkxg5JNwZzIK4N73sctMrmAHMeeghWsXQlS9gOEfTr9c510PW1VAsg/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzUEMkFj4IqXILB9uOocFF60FUBMSmo_jRgQ0fxAgjgT8N5ZJnPBkqnSj6WPeOX7QAZ/exec';
 
   document.getElementById('headerDate').textContent = new Date().toLocaleDateString('mn-MN', {year:'numeric', month:'long', day:'numeric'});
   document.querySelectorAll('input[type=date]').forEach(el => {
@@ -585,6 +617,61 @@
 
     fetch(url, { method: 'GET', mode: 'no-cors' }).catch(() => {});
   }
+
+  const SHEET_NAMES = {
+    'uurg': 'Үүрэг даалгавар',
+    'tooluur': 'Тоолуур солих',
+    'uzleg': 'Үзлэг шалгалт',
+    'material': 'Материал хүсэх',
+    'bagaj': 'Багаж судалгаа',
+    'baitsaagch': 'Байцаагчийн хэсэг',
+    'ded': 'Дэд станц',
+    'helheeh': 'Хэлхээ салгах/залгах'
+  };
+
+  function loadDashboard() {
+    const content = document.getElementById('dashContent');
+    content.innerHTML = '<div class="dash-loading">⏳ Мэдээлэл ачааллаж байна...</div>';
+    
+    const url = SCRIPT_URL + '?action=dashboard';
+    
+    fetch(url)
+      .then(r => r.json())
+      .then(data => renderDashboard(data))
+      .catch(() => {
+        content.innerHTML = '<div class="dash-error">⚠️ Мэдээлэл ачаалахад алдаа гарлаа.<br>Дахин оролдоно уу.</div>';
+      });
+  }
+
+  function renderDashboard(data) {
+    const content = document.getElementById('dashContent');
+    const today = new Date().toLocaleDateString('mn-MN');
+    
+    let todayTotal = 0;
+    Object.values(data.sheets || {}).forEach(s => todayTotal += (s.today || 0));
+
+    let html = '<div class="dash-grid">';
+    html += '<div class="dash-stat"><div class="num">' + (data.total || 0) + '</div><div class="num-today">+' + todayTotal + ' өнөөдөр</div><div class="lbl">Нийт бүртгэл</div></div>';
+    
+    Object.keys(SHEET_NAMES).forEach(key => {
+      const s = (data.sheets || {})[key] || {month: 0, today: 0};
+      html += '<div class="dash-stat"><div class="num">' + s.month + '</div><div class="num-today">+' + s.today + ' өнөөдөр</div><div class="lbl">' + SHEET_NAMES[key] + '</div></div>';
+    });
+    html += '</div>';
+
+    // Bar chart
+    const max = Math.max(...Object.keys(SHEET_NAMES).map(k => ((data.sheets || {})[k] || {}).month || 0), 1);
+    html += '<div class="dash-bars"><h3>Сарын бүртгэл</h3>';
+    Object.keys(SHEET_NAMES).forEach(key => {
+      const s = (data.sheets || {})[key] || {month: 0};
+      const pct = Math.round((s.month / max) * 100);
+      html += '<div class="bar-row"><span class="bar-lbl">' + SHEET_NAMES[key] + '</span><div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div><span class="bar-val">' + s.month + '</span></div>';
+    });
+    html += '</div>';
+
+    content.innerHTML = html;
+  }
+
 </script>
 </body>
 </html>
